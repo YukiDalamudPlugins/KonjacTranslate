@@ -1,0 +1,12 @@
+{
+    "Author": "Yuki",
+    "Name": "Konjac Translate",
+    "Punchline": "Translate party JA -> ZH",
+    "Description": "/kj",
+    "InternalName": "KonjacTranslate",
+    "ApplicableVersion": "any",
+    "Tags": [
+        "translate",
+        "plugin"
+    ]
+}
