@@ -76,5 +76,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PAT }}
-          repository: YukiDalamudsPlugin/Repo
+          repository: YukiDalamudPlugins/Repo
           event-type: new-release
