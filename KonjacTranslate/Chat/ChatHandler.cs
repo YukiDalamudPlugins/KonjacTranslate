@@ -50,6 +50,7 @@ namespace KonjacTranslate.Chat
 
         public void UpdateTranslator()
         {
+            if (!plugin.Configuration.Enable) translator = null;
             try
             {
                 translator = new Translator(plugin.Configuration.DeepLAuthKey);
