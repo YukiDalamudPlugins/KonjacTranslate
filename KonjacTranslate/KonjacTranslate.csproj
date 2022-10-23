@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Authors>Yuki Midori</Authors>
     <Company></Company>
-    <Version>0.0.0.1</Version>
+    <Version>0.0.1</Version>
     <Description>Konjac Translate</Description>
     <Copyright></Copyright>
     <PackageProjectUrl>https://github.com/YukiDalamudPlugins/KonjacTranslate</PackageProjectUrl>
@@ -60,6 +60,10 @@
       <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
       <Private>false</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".github\workflows\build.yml" />
   </ItemGroup>
 
 </Project>
