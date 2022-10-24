@@ -30,11 +30,13 @@ public class MainWindow : Window, IDisposable
     public override void Draw()
     {
         bool saveConfig = false;
+        bool updateTranslator = false;
 
         var enable = plugin.Configuration.Enable;
         if (ImGui.Checkbox("Enable", ref enable))
         {
             plugin.Configuration.Enable = enable;
+            updateTranslator = true;
             saveConfig = true;
         }
         ImGui.Spacing();
@@ -42,7 +44,7 @@ public class MainWindow : Window, IDisposable
         if (ImGui.InputText("DeepL Auth Key", ref authKey, 64, ImGuiInputTextFlags.EnterReturnsTrue))
         {
             plugin.Configuration.DeepLAuthKey = authKey;
-            plugin.ChatHandler.UpdateTranslator();
+            updateTranslator = true;
             saveConfig = true;
         }
         ImGui.Spacing();
@@ -59,5 +61,6 @@ public class MainWindow : Window, IDisposable
             saveConfig = true;
         }
         if (saveConfig) plugin.Configuration.Save();
+        if (updateTranslator) plugin.ChatHandler.UpdateTranslator();
     }
 }

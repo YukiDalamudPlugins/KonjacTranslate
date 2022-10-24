@@ -3,6 +3,7 @@ using System.Linq;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Logging;
+using Dalamud.Utility;
 using DeepL;
 
 namespace KonjacTranslate.Chat
@@ -41,7 +42,9 @@ namespace KonjacTranslate.Chat
                         var translations = task.Result;
                         plugin.ChatGui.Print($"({sender.TextValue}) {translations[0].Text}");
                         PluginLog.Debug($"({sender.TextValue}) {translations[0].Text}");
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex)
+                    {
                         PluginLog.Error(ex.ToString());
                     }
                 }
@@ -50,13 +53,19 @@ namespace KonjacTranslate.Chat
 
         public void UpdateTranslator()
         {
-            if (!plugin.Configuration.Enable) translator = null;
+            if (!plugin.Configuration.Enable || plugin.Configuration.DeepLAuthKey.Trim().Length == 0)
+            {
+                translator = null;
+                return;
+            }
             try
             {
                 translator = new Translator(plugin.Configuration.DeepLAuthKey);
-            } catch (Exception ex)
+                plugin.ChatGui.Print($"[{plugin.Name}] translator ready!");
+            }
+            catch (Exception ex)
             {
-                plugin.ChatGui.PrintError("Token not working!");
+                plugin.ChatGui.PrintError($"[{plugin.Name}] token is invalid!");
                 PluginLog.Error(ex.ToString());
                 translator = null;
             }
